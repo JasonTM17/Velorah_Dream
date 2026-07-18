@@ -32,6 +32,7 @@ export function App() {
 
         <main
           id="main-content"
+          tabIndex={-1}
           className="flex flex-1 flex-col items-center justify-center px-6 py-[90px] text-center sm:pb-32 sm:pt-28 md:pb-40 md:pt-32"
         >
           <h1
