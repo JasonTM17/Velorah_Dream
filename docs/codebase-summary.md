@@ -2,42 +2,46 @@
 
 ## Current state
 
-Production-ready cinematic single-page frontend with five anchored sections and a responsive footer. No backend, routing layer, or persistent state.
+Production-polished static React/Vite single page with five anchored sections, a fixed section-aware header, accessible mobile disclosure, two viewport-managed video surfaces, and a responsive footer. No backend, router, form submission, or persistent state.
 
 ## Structure
 
 | Path | Responsibility |
 |---|---|
-| `index.html` | Document metadata and React mount point |
+| `index.html` | Metadata, favicon/share identity, font/video preconnects, and React mount point |
+| `public/velorah-*.svg` | Local favicon and social-card assets |
 | `src/main.tsx` | Validates the root element and mounts React |
 | `src/app.tsx` | Page shell, video hero, and section composition |
-| `src/components/site-header.tsx` | Brand, desktop navigation, and header CTA |
-| `src/components/site-footer.tsx` | Mobile-visible navigation, contact, and legal copy |
-| `src/components/sections/` | Studio, About, Journal, and Reach Us content |
-| `src/components/section-heading.tsx` | Shared editorial section heading pattern |
+| `src/components/site-header.tsx` | Fixed desktop navigation, active state, mobile disclosure, and CTA |
+| `src/hooks/use-page-navigation.ts` | Section and hero state through intersection observers |
+| `src/components/viewport-video.tsx` | Shared silent inline media plus viewport play/pause policy |
+| `src/components/site-footer.tsx` | Always-visible navigation, contact, and legal copy |
+| `src/components/sections/` | Studio reel, About, Journal, and Reach Us content |
 | `src/components/section-reveal.tsx` | One-shot observer reveal with a no-API fallback |
 | `src/components/ui/button.tsx` | shadcn-compatible typed button variants |
-| `src/content/site-navigation.ts` | Shared header/footer anchor definitions |
-| `src/lib/utils.ts` | Tailwind class composition helper |
-| `src/index.css` | Tailwind import, theme tokens, glass effect, and motion |
-| `src/app.test.tsx` | Full-page DOM, navigation, motion, and accessibility contracts |
-| `vitest.config.ts` | App-only test discovery and coverage thresholds |
+| `src/content/site-navigation.ts` | Typed header/footer anchor definitions |
+| `src/content/site-media.ts` | Shared public MP4 source |
+| `src/index.css` | Tailwind import, tokens, glass, motion, and reduced-motion rules |
+| `src/**/*.test.tsx` | Page, header, media, reveal, and accessibility contracts |
 
 ## Runtime flow
 
-1. Browser loads `index.html` and the Vite bundle.
-2. `main.tsx` mounts `App` into `#root`.
-3. `App` starts the decorative muted video, renders the header and hero, then composes four editorial sections and the footer.
-4. The section reveal component observes content once; it exposes content immediately when the browser API is absent.
-5. Tailwind utilities and global CSS apply responsive layout, theme, glass, and reduced-motion behavior.
-6. Remote font/video failure falls back to local font families and the deep-navy page background.
+1. The document starts font/media connections and declares local SVG identity assets before mounting the bundle.
+2. `App` composes Home, Studio, About, Journal, Reach Us, and the footer.
+3. `usePageNavigation` observes a narrow viewport band for the active section and the hero ratio for header surface state. Without the API, state remains Home/transparent.
+4. The header component renders inline desktop links or a mobile disclosure. Opening focuses Home; selection, Escape, or a `md` resize closes it; Escape returns focus to the menu button.
+5. Hero and Studio instantiate the shared media component with one MP4. Hero preloads automatically; the reel preloads metadata. Each plays at 25% intersection and pauses otherwise.
+6. Section reveals become permanently visible on first intersection; missing observer support exposes them immediately.
+7. Reduced-motion CSS disables entrance/reveal/disclosure animation and smooth scrolling. It does not disable video playback.
 
-## External dependencies
+## External boundaries
 
 - Google Fonts: Instrument Serif and Inter.
-- CloudFront: supplied Velorah hero MP4.
-- npm dependencies are pinned through `package-lock.json`.
+- CloudFront: one public MP4 shared by hero and Studio reel.
+- npm dependencies: pinned through `package-lock.json`.
 
-## Data and security
+The app accepts no input and stores no user data, credentials, or tokens. Contact links hand off to the visitor's email client.
 
-The app accepts no user input and stores no user data, credentials, or tokens. The only network reads are public font and video resources. Contact links hand off to the visitor's local email client.
+## Verification
+
+At the current milestone: 14 tests across 5 focused files; 98.87% statements, 92% branches, 100% functions, and 98.79% lines in the configured coverage scope. Lint, build, audit, docs validation, and multi-viewport Chromium QA pass. See the [automated report](../plans/260718-2001-velorah-professional-web-polish/reports/tester-2026-07-18-professional-polish.md) and [browser QA](../plans/260718-2001-velorah-professional-web-polish/reports/browser-qa-2026-07-18-professional-polish.md).

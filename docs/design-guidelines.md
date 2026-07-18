@@ -2,7 +2,7 @@
 
 ## Direction
 
-Minimal, cinematic, and quiet. The background film provides the opening atmosphere; typography, editorial rules, and negative space carry the remaining page. UI chrome stays secondary.
+Minimal, cinematic, and quiet. The film provides atmosphere; typography, editorial rules, and negative space carry the page. UI chrome stays secondary. The same source returns in Studio as a cropped process reel, creating continuity without adding decoration.
 
 ## Typography
 
@@ -11,7 +11,7 @@ Minimal, cinematic, and quiet. The background film provides the opening atmosphe
 | Display and logo | Instrument Serif | 400 |
 | Body and controls | Inter | 400/500 |
 
-Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.46px` tracking. Muted emphasis stays upright, not italic.
+Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.46px` tracking. Muted emphasis stays upright, not italic. Fonts load from the document stylesheet after preconnect hints.
 
 ## Color tokens
 
@@ -25,33 +25,41 @@ Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.4
 | Secondary / muted / accent | `0 0% 10%` |
 | Border / input | `0 0% 18%` |
 
-## Layout
+## Layout and navigation
 
 - Full viewport uses mobile-safe `svh`/`dvh` units.
-- Header content stays within `max-w-7xl` with adaptive gutters.
-- Hero content remains centered with a `max-w-7xl` heading and `max-w-2xl` copy.
-- Editorial sections use a narrow index column and a wide narrative column inside `max-w-7xl`.
+- Header content and editorial sections stay within `max-w-7xl` with adaptive gutters.
+- The header is fixed: transparent over Home and tinted navy with one hairline after the hero ratio falls below 55%.
+- Desktop navigation appears at `md`. Narrow screens retain brand and CTA plus a 44px disclosure control.
+- Current desktop/mobile anchor uses foreground color and `aria-current="location"`.
+- Mobile links are at least 44px tall; opening focuses Home; Escape closes and returns focus; selection and desktop resize close.
+- Footer navigation remains visible at every width as a second route to all sections.
 - Studio, principles, and Journal use ruled rows rather than interchangeable cards.
-- Desktop navigation appears at `md`; brand and CTA remain at all widths.
-- Footer navigation remains visible at every width so mobile users can reach all sections.
-- Short landscape viewports may scroll vertically rather than compressing the specified display type.
+- The Studio reel is a wide asymmetric figure with its caption outside the media; no overlay copy or card shell.
 
 ## Glass controls
 
 Use the shared `glass` Button variant. It combines 1% white fill, 4px backdrop blur, subtle inset light, and a masked vertical border gradient. Do not add outer glow.
 
-## Motion and interaction
+## Motion and media
 
-- Headline enters at `0s`, copy at `0.2s`, CTA at `0.4s`.
-- Entrance duration is `0.8s ease-out` with 24px vertical travel.
-- Below-hero content reveals once with 32px vertical travel as it enters the viewport.
+- Headline enters at `0s`, copy at `0.2s`, CTA at `0.4s`; duration is `0.8s ease-out` with 24px travel.
+- Below-hero content reveals once with 32px vertical travel.
+- Mobile disclosure uses a 0.2s transform/opacity entrance and a transform-only icon morph.
 - Hover scales glass controls to `1.03`; active state scales to `0.98`.
-- Reduced-motion mode removes entrance/reveal animations and shows all content immediately.
-- Keyboard users receive a visible skip link and focus treatment.
+- Hero and reel share the supplied silent looping MP4. Hero uses `preload="auto"`; reel uses `preload="metadata"`.
+- Video attempts playback at 25% visibility, pauses outside view, and contains autoplay rejection.
+- Reduced-motion mode removes CSS entrance/reveal/disclosure animation and smooth scrolling. It does not stop video.
+
+## Identity
+
+- `public/velorah-mark.svg` is the local tab icon.
+- `public/velorah-social-card.svg` is the root-relative Open Graph/Twitter image.
+- Keep share metadata domain-neutral until deployment supplies a production origin. Do not claim universal SVG crawler support.
 
 ## Prohibited treatments
 
-- Decorative blobs or grain overlays.
-- Page-wide scrims or radial gradients.
+- Decorative blobs, grain overlays, page-wide scrims, or radial gradients.
 - Gradient display text.
-- Generic card grids, decorative section backgrounds, or ornaments without a product purpose.
+- Generic card grids, decorative section backgrounds, or ornaments without product purpose.
+- Full-screen mobile menu overlays or hover-only meaning.
