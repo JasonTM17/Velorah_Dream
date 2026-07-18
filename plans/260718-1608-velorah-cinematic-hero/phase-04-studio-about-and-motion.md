@@ -1,7 +1,7 @@
 ---
 phase: 4
 title: Studio About and Motion
-status: in-progress
+status: completed
 effort: 1.5h
 ---
 
@@ -21,7 +21,7 @@ Extend the completed hero into a continuous editorial page. Add substantive Stud
 
 ## Success Criteria
 
-- [ ] Studio and About are semantic, responsive sections with real anchor targets.
-- [ ] Reveal motion uses only opacity and transform, with a no-API fallback.
-- [ ] Reduced-motion mode makes all section content immediately visible.
-- [ ] Hero composition and supplied content remain intact.
+- [x] Studio and About are semantic, responsive sections with real anchor targets.
+- [x] Reveal motion uses only opacity and transform, with a no-API fallback.
+- [x] Reduced-motion mode makes all section content immediately visible.
+- [x] Hero composition and supplied content remain intact.

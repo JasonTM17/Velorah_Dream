@@ -1,8 +1,8 @@
 ---
 phase: 5
-title: "Journal Contact and Footer"
-status: pending
-effort: "1.5h"
+title: Journal Contact and Footer
+status: in-progress
+effort: 1.5h
 ---
 
 # Phase 5: Journal Contact and Footer
