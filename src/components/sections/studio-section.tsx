@@ -66,10 +66,11 @@ export function StudioSection() {
         </SectionReveal>
 
         <div className="mt-20 border-t border-white/15 sm:mt-28">
-          {studioDisciplines.map(({ number, title, description }) => (
+          {studioDisciplines.map(({ number, title, description }, index) => (
             <SectionReveal
               key={number}
               className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[4rem_minmax(0,0.8fr)_minmax(16rem,1.2fr)] sm:items-start sm:gap-8 sm:py-10"
+              delay={index * 50}
             >
               <span className="text-xs tracking-[0.2em] text-muted-foreground">
                 {number}
@@ -133,6 +134,7 @@ export function StudioSection() {
                   ? "md:col-span-5"
                   : "md:col-start-7 md:col-span-6 md:mt-32"
               }
+              delay={index * 80}
             >
               <article>
                 <CinematicImage

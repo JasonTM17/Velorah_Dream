@@ -6,6 +6,7 @@ import { JournalSection } from "@/components/sections/journal-section"
 import { StudioSection } from "@/components/sections/studio-section"
 import { Button } from "@/components/ui/button"
 import { ViewportVideo } from "@/components/viewport-video"
+import { filmStills } from "@/content/site-media"
 
 export function App() {
   return (
@@ -27,6 +28,7 @@ export function App() {
         >
           <ViewportVideo
             className="absolute inset-0 z-0 h-full w-full object-cover"
+            poster={filmStills.gathering.src}
             preload="auto"
           />
 

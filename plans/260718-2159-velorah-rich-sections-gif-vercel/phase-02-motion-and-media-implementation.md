@@ -1,8 +1,8 @@
 ---
 phase: 2
-title: "Motion and Media Implementation"
-status: pending
-effort: "medium"
+title: Motion and Media Implementation
+status: completed
+effort: medium
 ---
 
 # Phase 2: Motion and Media Implementation

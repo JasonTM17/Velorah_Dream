@@ -1,12 +1,27 @@
-import { useEffect, useRef, type HTMLAttributes } from "react"
+import {
+  useEffect,
+  useRef,
+  type CSSProperties,
+  type HTMLAttributes,
+} from "react"
 
 import { cn } from "@/lib/utils"
+
+interface SectionRevealProps extends HTMLAttributes<HTMLDivElement> {
+  delay?: number
+}
+
+interface RevealStyle extends CSSProperties {
+  "--reveal-delay"?: string
+}
 
 export function SectionReveal({
   className,
   children,
+  delay = 0,
+  style,
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: SectionRevealProps) {
   const elementRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -46,6 +61,12 @@ export function SectionReveal({
       ref={elementRef}
       className={cn("section-reveal", className)}
       data-visible="false"
+      style={
+        {
+          "--reveal-delay": `${delay}ms`,
+          ...style,
+        } as RevealStyle
+      }
       {...props}
     >
       {children}

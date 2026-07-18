@@ -116,10 +116,11 @@ export function AboutSection() {
           </SectionReveal>
 
           <div>
-            {method.map(({ number, title, description }) => (
+            {method.map(({ number, title, description }, index) => (
               <SectionReveal
                 key={number}
                 className="grid gap-5 border-b border-white/10 py-8 sm:grid-cols-[4rem_minmax(0,0.8fr)_minmax(16rem,1.2fr)] sm:gap-8 sm:py-10"
+                delay={index * 45}
               >
                 <span className="text-xs tracking-[0.2em] text-muted-foreground">
                   {number}

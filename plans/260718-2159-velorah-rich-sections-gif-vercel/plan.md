@@ -49,7 +49,7 @@ overlay will be introduced.
 | Phase | Name | Status |
 |-------|------|--------|
 | 1 | [Rich Cinematic Section Design](./phase-01-rich-cinematic-section-design.md) | Completed |
-| 2 | [Motion and Media Implementation](./phase-02-motion-and-media-implementation.md) | Pending |
+| 2 | [Motion and Media Implementation](./phase-02-motion-and-media-implementation.md) | Completed |
 | 3 | [GIF Evidence and Production QA](./phase-03-gif-evidence-and-production-qa.md) | Pending |
 | 4 | [Vercel Release and Documentation](./phase-04-vercel-release-and-documentation.md) | Pending |
 

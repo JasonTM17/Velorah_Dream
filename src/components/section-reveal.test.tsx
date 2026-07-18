@@ -8,6 +8,19 @@ afterEach(() => {
 })
 
 describe("SectionReveal", () => {
+  it("applies an explicit reveal delay without discarding caller styles", () => {
+    const { container } = render(
+      <SectionReveal delay={120} style={{ color: "white" }}>
+        Sequenced content
+      </SectionReveal>,
+    )
+
+    const element = container.firstElementChild as HTMLElement
+
+    expect(element.style.getPropertyValue("--reveal-delay")).toBe("120ms")
+    expect(element).toHaveStyle({ color: "rgb(255, 255, 255)" })
+  })
+
   it("reveals content immediately when IntersectionObserver is unavailable", async () => {
     const { container } = render(<SectionReveal>Visible content</SectionReveal>)
 

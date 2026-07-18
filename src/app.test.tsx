@@ -57,7 +57,15 @@ describe("Velorah page", () => {
     expect(video).toHaveAttribute("aria-hidden", "true")
     expect(video.muted).toBe(true)
     expect(video).toHaveAttribute("preload", "auto")
+    expect(video).toHaveAttribute(
+      "poster",
+      "/velorah-stills/velorah-still-01-1440.webp",
+    )
     expect(videos[1]).toHaveAttribute("preload", "metadata")
+    expect(videos[1]).toHaveAttribute(
+      "poster",
+      "/velorah-stills/velorah-still-01-1440.webp",
+    )
 
     for (const source of sources) {
       expect(source).toHaveAttribute(
@@ -115,6 +123,24 @@ describe("Velorah page", () => {
     expect(screen.getByRole("contentinfo")).toHaveTextContent(
       "© 2026 Velorah",
     )
+  })
+
+  it("renders dimensioned, responsive film imagery and expandable journal notes", () => {
+    render(<App />)
+
+    const filmImages = screen.getAllByRole("img")
+
+    expect(filmImages).toHaveLength(7)
+    for (const image of filmImages) {
+      expect(image).toHaveAttribute("loading", "lazy")
+      expect(image).toHaveAttribute("width", "1440")
+      expect(image).toHaveAttribute("height", "806")
+      expect(image.getAttribute("srcset")).toContain("720.webp 720w")
+      expect(image.getAttribute("srcset")).toContain("1440.webp 1440w")
+    }
+
+    expect(screen.getAllByText("Read the note")).toHaveLength(3)
+    expect(document.querySelectorAll("details.journal-note")).toHaveLength(3)
   })
 
   it("provides working email actions in contact and footer", () => {

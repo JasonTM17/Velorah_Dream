@@ -71,7 +71,7 @@ export function ContactSection() {
           </SectionReveal>
 
           <div className="grid gap-16 lg:col-start-7 lg:col-span-6 lg:pt-16">
-            <SectionReveal>
+            <SectionReveal delay={60}>
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 A useful first note
               </p>
@@ -88,7 +88,7 @@ export function ContactSection() {
               </ol>
             </SectionReveal>
 
-            <SectionReveal>
+            <SectionReveal delay={120}>
               <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 What happens next
               </p>
