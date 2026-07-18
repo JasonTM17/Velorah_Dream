@@ -2,7 +2,7 @@
 
 ## Overview
 
-Velorah Dream is a single-screen brand experience for deep thinkers, bold creators, and quiet rebels. The page uses one fullscreen film, restrained glass controls, and editorial typography to create a calm cinematic entry point.
+Velorah Dream is a complete single-page brand experience for deep thinkers, bold creators, and quiet rebels. A fullscreen film creates the entry point, then a restrained editorial system carries visitors through the studio offering, philosophy, journal perspective, and contact path.
 
 ## Audience
 
@@ -17,6 +17,11 @@ Velorah Dream is a single-screen brand experience for deep thinkers, bold creato
 - Present the supplied hero headline, supporting copy, and primary CTA.
 - Hide navigation links below the `md` breakpoint while keeping brand and CTA available.
 - Render both CTAs with the shared liquid-glass button variant.
+- Provide substantive Studio, About, Journal, and Reach Us sections.
+- Make every navigation item resolve to a real in-page target.
+- Expose all section links in the footer for narrow screens.
+- Provide a `mailto:` contact action for `hello@velorah.com`.
+- Reveal section content once as it enters the viewport, without an animation dependency.
 
 ## Quality requirements
 
@@ -27,11 +32,14 @@ Velorah Dream is a single-screen brand experience for deep thinkers, bold creato
 - Keep content accessible when remote fonts or video are unavailable.
 - Provide visible focus, skip navigation, and reduced-motion behavior.
 - Pass lint, unit tests, coverage thresholds, and production build.
+- Preserve semantic heading order and accessible section names.
+- Keep reveal content visible when the browser observer API is unavailable or reduced motion is requested.
 
 ## Out of scope
 
 - Backend services, authentication, persistence, analytics, or forms.
-- Additional Studio, About, Journal, or Reach Us page content.
+- Standalone journal detail pages or a content management system.
+- Email delivery infrastructure beyond the operating system `mailto:` action.
 - Theme switching or alternative visual modes.
 
 ## Acceptance evidence

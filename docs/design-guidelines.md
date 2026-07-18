@@ -2,7 +2,7 @@
 
 ## Direction
 
-Minimal, cinematic, and quiet. The background film provides all atmosphere. Typography and negative space carry the composition; UI chrome stays secondary.
+Minimal, cinematic, and quiet. The background film provides the opening atmosphere; typography, editorial rules, and negative space carry the remaining page. UI chrome stays secondary.
 
 ## Typography
 
@@ -30,7 +30,10 @@ Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.4
 - Full viewport uses mobile-safe `svh`/`dvh` units.
 - Header content stays within `max-w-7xl` with adaptive gutters.
 - Hero content remains centered with a `max-w-7xl` heading and `max-w-2xl` copy.
+- Editorial sections use a narrow index column and a wide narrative column inside `max-w-7xl`.
+- Studio, principles, and Journal use ruled rows rather than interchangeable cards.
 - Desktop navigation appears at `md`; brand and CTA remain at all widths.
+- Footer navigation remains visible at every width so mobile users can reach all sections.
 - Short landscape viewports may scroll vertically rather than compressing the specified display type.
 
 ## Glass controls
@@ -41,8 +44,9 @@ Use the shared `glass` Button variant. It combines 1% white fill, 4px backdrop b
 
 - Headline enters at `0s`, copy at `0.2s`, CTA at `0.4s`.
 - Entrance duration is `0.8s ease-out` with 24px vertical travel.
+- Below-hero content reveals once with 32px vertical travel as it enters the viewport.
 - Hover scales glass controls to `1.03`; active state scales to `0.98`.
-- Reduced-motion mode removes entrance animations and shortens interaction transitions.
+- Reduced-motion mode removes entrance/reveal animations and shows all content immediately.
 - Keyboard users receive a visible skip link and focus treatment.
 
 ## Prohibited treatments
@@ -50,4 +54,4 @@ Use the shared `glass` Button variant. It combines 1% white fill, 4px backdrop b
 - Decorative blobs or grain overlays.
 - Page-wide scrims or radial gradients.
 - Gradient display text.
-- Additional cards, sections, or ornaments without a revised product brief.
+- Generic card grids, decorative section backgrounds, or ornaments without a product purpose.

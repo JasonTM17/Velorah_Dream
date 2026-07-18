@@ -16,23 +16,26 @@ Apply YAGNI, KISS, then DRY. Preserve the visual contract before adding abstract
 ## Components
 
 - Place reusable primitives under `src/components/ui/`.
-- Place page-specific components directly under `src/components/`.
+- Place page sections under `src/components/sections/` and shared page components directly under `src/components/`.
+- Keep shared static navigation data in `src/content/` so header and footer cannot drift.
 - Use the local shadcn button primitive and class utility instead of duplicating CTA class logic.
 - Interactive elements require semantic HTML, visible focus, and meaningful accessible names.
+- Do not add hover affordances to non-interactive editorial content.
 
 ## Styling
 
 - Use Tailwind utilities for layout and component composition.
 - Keep semantic colors and font families in `src/index.css`.
-- Reserve custom CSS for theme tokens, the liquid-glass effect, and shared animation behavior.
+- Reserve custom CSS for theme tokens, the liquid-glass effect, and shared motion behavior.
 - Animate only `transform` and `opacity` for entrance motion.
 - Add a `prefers-reduced-motion` override for every non-essential animation.
+- Intersection-based reveals must be one-shot and expose content immediately when the API is unavailable.
 
 ## Testing
 
 - Component contracts live beside the app in `src/*.test.tsx`.
 - Explicit cleanup keeps tests isolated.
-- Test supplied copy, navigation semantics, media attributes, CTA variants, and accessibility contracts.
+- Test supplied copy, anchor resolution, section semantics, media attributes, CTA variants, reveal fallbacks, and accessibility contracts.
 - Run `npm run lint`, `npm run test:coverage`, and `npm run build` before completion.
 
 ## Git

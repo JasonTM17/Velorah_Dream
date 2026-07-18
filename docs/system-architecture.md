@@ -9,10 +9,11 @@ Velorah Dream is a static client-rendered React application built by Vite. It ha
 | Layer | Implementation | Contract |
 |---|---|---|
 | Document | `index.html` | Metadata, viewport, mount point |
-| Application | `src/app.tsx` | Full hero composition and media attributes |
-| Components | `src/components/` | Navigation and reusable Button primitive |
-| Design system | `src/index.css` | Semantic tokens, fonts, glass, animation |
-| Verification | Vitest + Testing Library | DOM, media, CTA, and accessibility contracts |
+| Application | `src/app.tsx` | Page shell, hero media, and section composition |
+| Content | `src/content/site-navigation.ts` | Shared in-page navigation contract |
+| Components | `src/components/` | Header, footer, sections, reveal, and Button primitive |
+| Design system | `src/index.css` | Semantic tokens, fonts, glass, and motion |
+| Verification | Vitest + Testing Library | DOM, anchors, media, motion, and accessibility contracts |
 | Build | Vite + TypeScript + Tailwind | Typed optimized static assets in `dist/` |
 
 ## Network boundaries
@@ -23,6 +24,14 @@ Velorah Dream is a static client-rendered React application built by Vite. It ha
 | `d8j0ntlcm91z4.cloudfront.net` | Decorative MP4 | Deep-navy background preserves layout and legibility |
 
 No request contains credentials or user data.
+
+## Interaction flow
+
+1. Header and hero links use native fragment navigation to existing section IDs.
+2. Section content is present in the DOM from initial render.
+3. The section reveal component observes each wrapper and permanently marks it visible on first intersection.
+4. Browsers without the observer API and reduced-motion users receive immediately visible content.
+5. Contact links delegate to the visitor's configured email client; no form data crosses an application boundary.
 
 ## Deployment model
 
