@@ -5,9 +5,7 @@ import { ContactSection } from "@/components/sections/contact-section"
 import { JournalSection } from "@/components/sections/journal-section"
 import { StudioSection } from "@/components/sections/studio-section"
 import { Button } from "@/components/ui/button"
-
-const VIDEO_SOURCE =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+import { ViewportVideo } from "@/components/viewport-video"
 
 export function App() {
   return (
@@ -27,18 +25,10 @@ export function App() {
           aria-labelledby="hero-heading"
           className="relative isolate flex min-h-[100svh] overflow-hidden bg-background md:min-h-[100dvh]"
         >
-          <video
+          <ViewportVideo
             className="absolute inset-0 z-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
             preload="auto"
-            aria-hidden="true"
-            tabIndex={-1}
-          >
-            <source src={VIDEO_SOURCE} type="video/mp4" />
-          </video>
+          />
 
           <div className="relative z-10 flex min-h-[100svh] w-full flex-col items-center justify-center px-6 py-[90px] text-center sm:pb-32 sm:pt-28 md:min-h-[100dvh] md:pb-40 md:pt-32">
             <h1

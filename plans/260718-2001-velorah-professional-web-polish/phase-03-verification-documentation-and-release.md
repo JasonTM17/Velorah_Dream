@@ -1,8 +1,8 @@
 ---
 phase: 3
-title: "Verification Documentation and Release"
-status: pending
-effort: "1.5h"
+title: Verification Documentation and Release
+status: in-progress
+effort: 1.5h
 priority: P1
 dependencies:
   - 1

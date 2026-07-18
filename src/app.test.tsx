@@ -47,20 +47,27 @@ describe("Velorah page", () => {
 
   it("configures the background video for silent inline looping playback", () => {
     const { container } = render(<App />)
-    const video = container.querySelector("video")
-    const source = container.querySelector("video source")
+    const videos = container.querySelectorAll("video")
+    const sources = container.querySelectorAll("video source")
+    const video = videos[0]
 
-    expect(video).not.toBeNull()
+    expect(videos).toHaveLength(2)
+    expect(sources).toHaveLength(2)
     expect(video).toHaveAttribute("autoplay")
     expect(video).toHaveAttribute("loop")
     expect(video).toHaveAttribute("playsinline")
     expect(video).toHaveAttribute("aria-hidden", "true")
-    expect(video?.muted).toBe(true)
-    expect(source).toHaveAttribute(
-      "src",
-      "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4",
-    )
-    expect(source).toHaveAttribute("type", "video/mp4")
+    expect(video.muted).toBe(true)
+    expect(video).toHaveAttribute("preload", "auto")
+    expect(videos[1]).toHaveAttribute("preload", "metadata")
+
+    for (const source of sources) {
+      expect(source).toHaveAttribute(
+        "src",
+        "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4",
+      )
+      expect(source).toHaveAttribute("type", "video/mp4")
+    }
   })
 
   it("exposes both glass CTAs as keyboard-accessible links", () => {

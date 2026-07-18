@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Velorah — Where dreams rise</title>
+  <desc id="description">Velorah creates focused digital spaces for deep thinkers, bold creators, and quiet rebels.</desc>
+  <rect width="1200" height="630" fill="#002b42"/>
+  <path d="M80 80h1040M80 550h1040" stroke="#fff" stroke-opacity=".18"/>
+  <text x="80" y="168" fill="#fff" font-family="Georgia, 'Times New Roman', serif" font-size="64">Velorah®</text>
+  <text x="80" y="358" fill="#fff" font-family="Georgia, 'Times New Roman', serif" font-size="88" letter-spacing="-2">Where dreams rise</text>
+  <text x="84" y="425" fill="#a9a9ae" font-family="Arial, sans-serif" font-size="25" letter-spacing="1">FOR DEEP THINKERS, BOLD CREATORS, AND QUIET REBELS.</text>
+  <circle cx="1088" cy="126" r="31" fill="none" stroke="#fff" stroke-opacity=".7"/>
+  <path d="M1074 111h10l7 23 8-23h10v3h-3l-11 28h-8l-10-28h-3z" fill="#fff"/>
+</svg>

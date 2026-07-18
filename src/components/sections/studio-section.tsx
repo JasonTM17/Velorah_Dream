@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/section-heading"
 import { SectionReveal } from "@/components/section-reveal"
+import { ViewportVideo } from "@/components/viewport-video"
 
 const studioDisciplines = [
   {
@@ -57,6 +58,26 @@ export function StudioSection() {
             </SectionReveal>
           ))}
         </div>
+
+        <SectionReveal className="mt-20 sm:mt-28 lg:ml-[8.333%] lg:w-[91.667%]">
+          <figure>
+            <div className="aspect-[16/10] overflow-hidden border-y border-white/15 bg-background sm:aspect-video">
+              <ViewportVideo
+                className="h-full w-full scale-[1.01] object-cover object-[center_62%]"
+                preload="metadata"
+              />
+            </div>
+            <figcaption className="mt-5 grid gap-3 border-b border-white/10 pb-5 sm:grid-cols-[12rem_minmax(0,1fr)] sm:gap-8">
+              <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                Studio reel / In motion
+              </span>
+              <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+                Fragments of atmosphere, texture, and pace — an ongoing study
+                in turning feeling into form.
+              </p>
+            </figcaption>
+          </figure>
+        </SectionReveal>
       </div>
     </section>
   )

@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: Animated Studio Reel and Identity
-status: in-progress
+status: completed
 effort: 1.5h
 priority: P1
 dependencies:
