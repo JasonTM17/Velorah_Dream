@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header"
 
 afterEach(() => {
   vi.unstubAllGlobals()
+  vi.restoreAllMocks()
 })
 
 function renderHeaderWithSections() {
@@ -75,6 +76,60 @@ describe("SiteHeader", () => {
       "data-surface",
       "solid",
     )
+  })
+
+  it("tracks the last crossed section after a fast scroll", () => {
+    class FakeIntersectionObserver {
+      constructor() {}
+
+      observe = vi.fn()
+      disconnect = vi.fn()
+    }
+
+    vi.stubGlobal("IntersectionObserver", FakeIntersectionObserver)
+    vi.stubGlobal(
+      "requestAnimationFrame",
+      (callback: FrameRequestCallback) => {
+        callback(1)
+        return 1
+      },
+    )
+    vi.stubGlobal("cancelAnimationFrame", vi.fn())
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        const topBySection: Record<string, number> = {
+          home: -4200,
+          studio: -3200,
+          about: -2200,
+          journal: -1200,
+          "reach-us": 0,
+        }
+        const top = topBySection[this.id] ?? 0
+
+        return {
+          top,
+          bottom: top + 800,
+          left: 0,
+          right: 0,
+          width: 800,
+          height: 800,
+          x: 0,
+          y: top,
+          toJSON: () => ({}),
+        } as DOMRect
+      },
+    )
+
+    renderHeaderWithSections()
+
+    act(() => window.dispatchEvent(new Event("scroll")))
+
+    const primaryNavigation = screen.getByRole("navigation", {
+      name: "Primary navigation",
+    })
+    expect(
+      within(primaryNavigation).getByRole("link", { name: "Reach Us" }),
+    ).toHaveAttribute("aria-current", "location")
   })
 
   it("opens the mobile disclosure, manages focus, and closes on Escape", async () => {

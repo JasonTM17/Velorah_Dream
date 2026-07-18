@@ -51,6 +51,34 @@ export function usePageNavigation() {
 
     sections.forEach((section) => sectionObserver.observe(section))
 
+    let scrollFrame: number | undefined
+    const updateActiveFromScroll = () => {
+      scrollFrame = undefined
+      const probeLine = window.innerHeight * 0.18
+      let currentSection = sections[0]
+
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top > probeLine) {
+          break
+        }
+
+        currentSection = section
+      }
+
+      if (currentSection && isNavigationId(currentSection.id)) {
+        setActiveSection(currentSection.id)
+      }
+    }
+    const handleScroll = () => {
+      if (scrollFrame !== undefined) {
+        return
+      }
+
+      scrollFrame = window.requestAnimationFrame(updateActiveFromScroll)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+
     const hero = document.getElementById("home")
     const heroObserver = hero
       ? new IntersectionObserver(
@@ -70,6 +98,10 @@ export function usePageNavigation() {
     }
 
     return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (scrollFrame !== undefined) {
+        window.cancelAnimationFrame(scrollFrame)
+      }
       sectionObserver.disconnect()
       heroObserver?.disconnect()
     }
