@@ -20,7 +20,7 @@ status: passed
 | TypeScript + Vite build | Pass; 32 modules transformed |
 | npm audit | 0 vulnerabilities |
 
-Production output: 74.27kB JavaScript gzip and 5.77kB CSS gzip.
+Production output: 74.26kB JavaScript gzip and 5.81kB CSS gzip.
 
 ## Browser matrix
 
