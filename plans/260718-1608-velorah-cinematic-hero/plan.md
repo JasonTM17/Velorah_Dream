@@ -35,8 +35,8 @@ Create a complete React, Vite, Tailwind CSS, TypeScript, and shadcn/ui single-pa
 | 2 | [Cinematic Hero](./phase-02-cinematic-hero.md) | Completed |
 | 3 | [Verification and Documentation](./phase-03-verification-and-documentation.md) | Completed |
 | 4 | [Studio About and Motion](./phase-04-studio-about-and-motion.md) | Completed |
-| 5 | [Journal Contact and Footer](./phase-05-journal-contact-and-footer.md) | In Progress |
-| 6 | [Full Page Verification](./phase-06-full-page-verification.md) | Pending |
+| 5 | [Journal Contact and Footer](./phase-05-journal-contact-and-footer.md) | Completed |
+| 6 | [Full Page Verification](./phase-06-full-page-verification.md) | In Progress |
 
 ## Dependencies
 

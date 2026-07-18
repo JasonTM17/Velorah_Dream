@@ -1,8 +1,8 @@
 ---
 phase: 6
-title: "Full Page Verification"
-status: pending
-effort: "1h"
+title: Full Page Verification
+status: in-progress
+effort: 1h
 ---
 
 # Phase 6: Full Page Verification

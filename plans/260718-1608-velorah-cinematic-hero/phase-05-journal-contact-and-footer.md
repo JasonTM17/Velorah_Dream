@@ -1,7 +1,7 @@
 ---
 phase: 5
 title: Journal Contact and Footer
-status: in-progress
+status: completed
 effort: 1.5h
 ---
 
@@ -21,7 +21,7 @@ Complete the page narrative with Journal, Reach Us, and a responsive footer. Mak
 
 ## Success Criteria
 
-- [ ] Journal entries read as an editorial index, not interchangeable cards.
-- [ ] Reach Us exposes a keyboard-accessible `mailto:` action.
-- [ ] Footer navigation exposes all page sections on mobile.
-- [ ] Every primary navigation and CTA anchor resolves to an existing target.
+- [x] Journal entries read as an editorial index, not interchangeable cards.
+- [x] Reach Us exposes a keyboard-accessible `mailto:` action.
+- [x] Footer navigation exposes all page sections on mobile.
+- [x] Every primary navigation and CTA anchor resolves to an existing target.
