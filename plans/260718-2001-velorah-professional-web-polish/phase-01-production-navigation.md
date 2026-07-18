@@ -1,7 +1,7 @@
 ---
 phase: 1
 title: Production Navigation
-status: in-progress
+status: completed
 effort: 1.5h
 priority: P1
 dependencies: []

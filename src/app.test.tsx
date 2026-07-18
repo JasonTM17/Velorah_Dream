@@ -34,7 +34,7 @@ describe("Velorah page", () => {
     ])
     expect(within(navigation).getByRole("link", { name: "Home" })).toHaveAttribute(
       "aria-current",
-      "page",
+      "location",
     )
 
     for (const link of navigationLinks) {

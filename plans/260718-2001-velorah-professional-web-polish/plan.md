@@ -27,8 +27,8 @@ Preserve the exact hero, copy, video, typography, navy palette, and restrained e
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Production Navigation](./phase-01-production-navigation.md) | In Progress |
-| 2 | [Animated Studio Reel and Identity](./phase-02-animated-studio-reel-and-identity.md) | Pending |
+| 1 | [Production Navigation](./phase-01-production-navigation.md) | Completed |
+| 2 | [Animated Studio Reel and Identity](./phase-02-animated-studio-reel-and-identity.md) | In Progress |
 | 3 | [Verification Documentation and Release](./phase-03-verification-documentation-and-release.md) | Pending |
 
 ## Dependencies

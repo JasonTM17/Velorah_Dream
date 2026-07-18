@@ -103,6 +103,18 @@
   }
 }
 
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-fade-rise {
   animation: fade-rise 0.8s ease-out both;
 }
@@ -113,6 +125,10 @@
 
 .animate-fade-rise-delay-2 {
   animation: fade-rise 0.8s ease-out 0.4s both;
+}
+
+.mobile-menu-enter {
+  animation: mobile-menu-enter 0.2s ease-out both;
 }
 
 .section-reveal {
@@ -135,7 +151,8 @@
 
   .animate-fade-rise,
   .animate-fade-rise-delay,
-  .animate-fade-rise-delay-2 {
+  .animate-fade-rise-delay-2,
+  .mobile-menu-enter {
     animation: none;
   }
 

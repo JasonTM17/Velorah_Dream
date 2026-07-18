@@ -1,7 +1,9 @@
 export const navigationItems = [
-  { label: "Home", href: "#home", active: true },
-  { label: "Studio", href: "#studio", active: false },
-  { label: "About", href: "#about", active: false },
-  { label: "Journal", href: "#journal", active: false },
-  { label: "Reach Us", href: "#reach-us", active: false },
+  { id: "home", label: "Home", href: "#home" },
+  { id: "studio", label: "Studio", href: "#studio" },
+  { id: "about", label: "About", href: "#about" },
+  { id: "journal", label: "Journal", href: "#journal" },
+  { id: "reach-us", label: "Reach Us", href: "#reach-us" },
 ] as const
+
+export type NavigationId = (typeof navigationItems)[number]["id"]
