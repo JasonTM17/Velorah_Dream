@@ -36,8 +36,8 @@ approved hero animation and viewport-video lifecycle.
 
 ## Success Criteria
 
-- [ ] Motion uses only transform/opacity and feels consistent across all sections.
-- [ ] Hero entrance timings remain `0s`, `0.2s`, and `0.4s`.
-- [ ] Reduced-motion users receive all content without authored motion.
-- [ ] New and existing focused tests pass before broader release gates.
-- [ ] No new dependency is required for motion or media behavior.
+- [x] Motion uses only transform/opacity and feels consistent across all sections.
+- [x] Hero entrance timings remain `0s`, `0.2s`, and `0.4s`.
+- [x] Reduced-motion users receive all content without authored motion.
+- [x] New and existing focused tests pass before broader release gates.
+- [x] No new dependency is required for motion or media behavior.

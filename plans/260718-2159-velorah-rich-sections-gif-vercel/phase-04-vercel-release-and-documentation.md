@@ -17,6 +17,7 @@ documentation and metadata, re-deploy, and verify the exact public artifact.
 - `.gitignore`
 - `index.html`
 - `README.md`
+- `docs/project-overview-pdr.md`
 - `docs/codebase-summary.md`
 - `docs/design-guidelines.md`
 - `docs/system-architecture.md`
