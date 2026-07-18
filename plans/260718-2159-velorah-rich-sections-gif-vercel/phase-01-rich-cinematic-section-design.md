@@ -1,8 +1,8 @@
 ---
 phase: 1
-title: "Rich Cinematic Section Design"
-status: pending
-effort: "large"
+title: Rich Cinematic Section Design
+status: completed
+effort: large
 ---
 
 # Phase 1: Rich Cinematic Section Design

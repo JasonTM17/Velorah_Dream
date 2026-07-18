@@ -1,6 +1,21 @@
+import { CinematicImage } from "@/components/cinematic-image"
 import { SectionReveal } from "@/components/section-reveal"
+import { filmStills } from "@/content/site-media"
 
 const CONTACT_EMAIL = "hello@velorah.com"
+
+const firstNotePrompts = [
+  "What are you making, changing, or trying to understand?",
+  "Who should feel the difference when the work is done?",
+  "What already exists, and what no longer feels true?",
+  "Is there a moment, constraint, or ambition shaping the timing?",
+] as const
+
+const nextSteps = [
+  ["Exchange", "We read the context and come back with the questions that matter."],
+  ["Fit", "A focused conversation tests the challenge, chemistry, and useful scope."],
+  ["Shape", "If the fit is right, we define the first working phase together."],
+] as const
 
 export function ContactSection() {
   return (
@@ -23,25 +38,81 @@ export function ContactSection() {
               Bring us the question that won&apos;t leave you alone.
             </h2>
 
-            <p className="mt-8 max-w-xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+            <p className="mt-8 max-w-2xl text-pretty text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
               Tell us where you are, what you&apos;re building, and why it
-              matters. We&apos;ll begin with a thoughtful conversation.
+              matters. A useful beginning does not need a perfect brief — only
+              enough truth to start a thoughtful conversation.
             </p>
 
             <a
-              className="group mt-12 inline-flex min-h-11 items-center gap-4 border-b border-white/35 pb-2 text-base text-foreground outline-none transition-colors duration-300 hover:border-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:text-lg"
+              aria-label="Start a conversation"
+              className="group mt-12 inline-flex min-h-12 max-w-full items-center gap-4 border-b border-white/35 pb-2 font-display text-3xl leading-none text-foreground outline-none transition-colors duration-300 hover:border-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:text-4xl"
               href={`mailto:${CONTACT_EMAIL}?subject=New%20project%20with%20Velorah`}
             >
-              Start a conversation
+              <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
               <span
                 aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               >
                 ↗
               </span>
             </a>
           </div>
         </SectionReveal>
+
+        <div className="mt-24 grid gap-14 border-t border-white/15 pt-10 lg:grid-cols-12 lg:gap-8 sm:mt-32">
+          <SectionReveal className="lg:col-span-5">
+            <CinematicImage
+              frameClassName="aspect-[4/5]"
+              imageClassName="object-[50%_center]"
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              still={filmStills.horizon}
+            />
+          </SectionReveal>
+
+          <div className="grid gap-16 lg:col-start-7 lg:col-span-6 lg:pt-16">
+            <SectionReveal>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                A useful first note
+              </p>
+              <ol className="mt-6 border-t border-white/15">
+                {firstNotePrompts.map((prompt, index) => (
+                  <li
+                    key={prompt}
+                    className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 border-b border-white/10 py-5 text-sm leading-6"
+                  >
+                    <span className="text-muted-foreground">0{index + 1}</span>
+                    <span>{prompt}</span>
+                  </li>
+                ))}
+              </ol>
+            </SectionReveal>
+
+            <SectionReveal>
+              <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                What happens next
+              </p>
+              <dl className="mt-6 border-t border-white/15">
+                {nextSteps.map(([title, description], index) => (
+                  <div
+                    key={title}
+                    className="grid gap-3 border-b border-white/10 py-5 sm:grid-cols-[2.5rem_6rem_minmax(0,1fr)] sm:gap-5"
+                  >
+                    <span className="text-xs text-muted-foreground">
+                      0{index + 1}
+                    </span>
+                    <dt className="text-sm font-medium text-foreground">
+                      {title}
+                    </dt>
+                    <dd className="text-sm leading-6 text-muted-foreground">
+                      {description}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </SectionReveal>
+          </div>
+        </div>
       </div>
     </section>
   )

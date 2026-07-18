@@ -1,14 +1,22 @@
 ---
-title: "Velorah Rich Sections, Motion Evidence and Vercel Release"
-description: "Enrich every below-fold section with cinematic editorial depth, preserve the approved hero contract, capture motion GIF evidence, and release the verified site to Vercel."
+title: 'Velorah Rich Sections, Motion Evidence and Vercel Release'
+description: >-
+  Enrich every below-fold section with cinematic editorial depth, preserve the
+  approved hero contract, capture motion GIF evidence, and release the verified
+  site to Vercel.
 status: pending
 priority: P1
-branch: "main"
-tags: [frontend, design, motion, qa, vercel]
+branch: main
+tags:
+  - frontend
+  - design
+  - motion
+  - qa
+  - vercel
 blockedBy: []
 blocks: []
-created: "2026-07-18T15:00:13.043Z"
-createdBy: "ck:plan"
+created: '2026-07-18T15:00:13.043Z'
+createdBy: 'ck:plan'
 source: skill
 ---
 
@@ -40,7 +48,7 @@ overlay will be introduced.
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Rich Cinematic Section Design](./phase-01-rich-cinematic-section-design.md) | Pending |
+| 1 | [Rich Cinematic Section Design](./phase-01-rich-cinematic-section-design.md) | Completed |
 | 2 | [Motion and Media Implementation](./phase-02-motion-and-media-implementation.md) | Pending |
 | 3 | [GIF Evidence and Production QA](./phase-03-gif-evidence-and-production-qa.md) | Pending |
 | 4 | [Vercel Release and Documentation](./phase-04-vercel-release-and-documentation.md) | Pending |
