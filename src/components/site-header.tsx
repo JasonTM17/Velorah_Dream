@@ -10,7 +10,7 @@ const navigationItems = [
 
 export function SiteHeader() {
   return (
-    <header className="relative z-10 mx-auto flex w-full max-w-7xl flex-row items-center justify-between gap-4 px-4 py-5 sm:px-8 sm:py-6">
+    <header className="absolute left-1/2 top-0 z-20 mx-auto flex w-full max-w-7xl -translate-x-1/2 flex-row items-center justify-between gap-4 px-4 py-5 sm:px-8 sm:py-6">
       <a
         className="shrink-0 text-3xl leading-none tracking-tight text-foreground outline-none transition-opacity duration-200 hover:opacity-80 focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-transparent"
         href="#home"
@@ -45,7 +45,7 @@ export function SiteHeader() {
         variant="glass"
         className="min-h-11 h-auto rounded-full px-5 py-2.5 text-sm text-foreground sm:px-6"
       >
-        <a href="#journey">Begin Journey</a>
+        <a href="#reach-us">Begin Journey</a>
       </Button>
     </header>
   )
