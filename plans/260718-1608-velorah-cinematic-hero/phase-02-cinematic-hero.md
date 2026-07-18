@@ -1,10 +1,11 @@
 ---
 phase: 2
-title: "Cinematic Hero"
-status: pending
+title: Cinematic Hero
+status: completed
 priority: P1
-effort: "75m"
-dependencies: [1]
+effort: 75m
+dependencies:
+  - 1
 ---
 
 # Phase 2: Cinematic Hero
@@ -36,10 +37,10 @@ Implement the supplied fullscreen video composition with responsive navigation, 
 
 ## Success Criteria
 
-- [ ] Desktop layout matches all supplied spacing, copy, type, and color requirements.
-- [ ] Mobile layout has no overflow; logo and CTA remain usable while nav links hide.
-- [ ] Video is decorative, muted, loops inline, and does not block content interaction.
-- [ ] Only transform/opacity animate; reduced-motion users receive static content.
+- [x] Desktop layout matches all supplied spacing, copy, type, and color requirements.
+- [x] Mobile layout has no overflow; logo and CTA remain usable while nav links hide.
+- [x] Video is decorative, muted, loops inline, and does not block content interaction.
+- [x] Only transform/opacity animate; reduced-motion users receive static content.
 
 ## Risk Assessment
 

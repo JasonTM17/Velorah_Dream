@@ -1,15 +1,17 @@
 ---
-title: "Velorah Cinematic Hero"
-description: "Build and verify a production-ready fullscreen video hero for Velorah."
-status: pending
+title: Velorah Cinematic Hero
+description: Build and verify a production-ready fullscreen video hero for Velorah.
+status: completed
 priority: P1
 effort: 3h
-branch: ""
-tags: [feature, frontend]
+branch: main
+tags:
+  - feature
+  - frontend
 blockedBy: []
 blocks: []
-created: "2026-07-18T09:08:27.758Z"
-createdBy: "ck:plan"
+created: '2026-07-18T09:08:27.758Z'
+createdBy: 'ck:plan'
 source: skill
 ---
 
@@ -19,13 +21,18 @@ source: skill
 
 Create a new React, Vite, Tailwind CSS, TypeScript, and shadcn/ui single-page site. Match the supplied Velorah composition exactly while adding mobile resilience, keyboard focus, reduced-motion behavior, and a video fallback without introducing extra visual sections.
 
+## Progress
+
+- Phases: 3/3 completed (100%).
+- Success criteria: 11/11 verified.
+
 ## Phases
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | [Project Scaffold](./phase-01-project-scaffold.md) | Pending |
-| 2 | [Cinematic Hero](./phase-02-cinematic-hero.md) | Pending |
-| 3 | [Verification and Documentation](./phase-03-verification-and-documentation.md) | Pending |
+| 1 | [Project Scaffold](./phase-01-project-scaffold.md) | Completed |
+| 2 | [Cinematic Hero](./phase-02-cinematic-hero.md) | Completed |
+| 3 | [Verification and Documentation](./phase-03-verification-and-documentation.md) | Completed |
 
 ## Dependencies
 
