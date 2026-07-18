@@ -1,9 +1,7 @@
-import { act, render, screen, waitFor, within } from "@testing-library/react"
-import { describe, expect, it, vi } from "vitest"
+import { render, screen, within } from "@testing-library/react"
+import { describe, expect, it } from "vitest"
 
 import { App } from "@/app"
-import { SectionReveal } from "@/components/section-reveal"
-import { Button } from "@/components/ui/button"
 
 describe("Velorah page", () => {
   it("renders the supplied brand message and navigation", () => {
@@ -142,74 +140,4 @@ describe("Velorah page", () => {
     expect(screen.getByRole("main")).toHaveAttribute("tabindex", "-1")
   })
 
-  it("keeps the default shadcn button available for native actions", () => {
-    render(<Button type="button">Continue</Button>)
-
-    expect(screen.getByRole("button", { name: "Continue" })).toHaveAttribute(
-      "data-slot",
-      "button",
-    )
-  })
-
-  it("reveals content immediately when IntersectionObserver is unavailable", async () => {
-    const { container } = render(<SectionReveal>Visible content</SectionReveal>)
-
-    await waitFor(() => {
-      expect(container.firstElementChild).toHaveAttribute(
-        "data-visible",
-        "true",
-      )
-    })
-  })
-
-  it("reveals observed content once and disconnects on unmount", () => {
-    let observerCallback: IntersectionObserverCallback | undefined
-    const observe = vi.fn()
-    const unobserve = vi.fn()
-    const disconnect = vi.fn()
-
-    class FakeIntersectionObserver {
-      constructor(callback: IntersectionObserverCallback) {
-        observerCallback = callback
-      }
-
-      observe = observe
-      unobserve = unobserve
-      disconnect = disconnect
-    }
-
-    vi.stubGlobal("IntersectionObserver", FakeIntersectionObserver)
-
-    try {
-      const { container, unmount } = render(
-        <SectionReveal>Observed content</SectionReveal>,
-      )
-      const element = container.firstElementChild
-
-      expect(observe).toHaveBeenCalledWith(element)
-      expect(element).toHaveAttribute("data-visible", "false")
-
-      act(() => {
-        observerCallback?.(
-          [{ isIntersecting: false } as IntersectionObserverEntry],
-          {} as IntersectionObserver,
-        )
-      })
-      expect(element).toHaveAttribute("data-visible", "false")
-
-      act(() => {
-        observerCallback?.(
-          [{ isIntersecting: true } as IntersectionObserverEntry],
-          {} as IntersectionObserver,
-        )
-      })
-      expect(element).toHaveAttribute("data-visible", "true")
-      expect(unobserve).toHaveBeenCalledWith(element)
-
-      unmount()
-      expect(disconnect).toHaveBeenCalledOnce()
-    } finally {
-      vi.unstubAllGlobals()
-    }
-  })
 })

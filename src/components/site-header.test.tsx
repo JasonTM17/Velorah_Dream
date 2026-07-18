@@ -135,6 +135,22 @@ describe("SiteHeader", () => {
     fireEvent.click(
       screen.getByRole("button", { name: "Open navigation menu" }),
     )
+    fireEvent.click(screen.getByRole("link", { name: "Velorah home" }))
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile navigation" }),
+    ).not.toBeInTheDocument()
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Open navigation menu" }),
+    )
+    fireEvent.click(screen.getByRole("link", { name: "Begin Journey" }))
+    expect(
+      screen.queryByRole("navigation", { name: "Mobile navigation" }),
+    ).not.toBeInTheDocument()
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Open navigation menu" }),
+    )
     act(() => mediaListeners[0]?.({ matches: true } as MediaQueryListEvent))
     expect(
       screen.queryByRole("navigation", { name: "Mobile navigation" }),

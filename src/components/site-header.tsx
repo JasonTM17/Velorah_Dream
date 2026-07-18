@@ -64,6 +64,7 @@ export function SiteHeader() {
           href="#home"
           aria-label="Velorah home"
           style={{ fontFamily: "'Instrument Serif', serif" }}
+          onClick={() => setIsMenuOpen(false)}
         >
           Velorah<sup className="ml-0.5 text-xs">®</sup>
         </a>
@@ -99,7 +100,9 @@ export function SiteHeader() {
             variant="glass"
             className="min-h-11 h-auto rounded-full px-5 py-2.5 text-sm text-foreground sm:px-6"
           >
-            <a href="#reach-us">Begin Journey</a>
+            <a href="#reach-us" onClick={() => setIsMenuOpen(false)}>
+              Begin Journey
+            </a>
           </Button>
 
           <button
