@@ -1,7 +1,8 @@
 import { navigationItems } from "@/content/site-navigation"
+import { PROJECT_BRIEF_URL } from "@/content/site-contact"
 
 const linkClassName =
-  "text-sm text-muted-foreground outline-none transition-colors duration-200 hover:text-foreground focus-visible:text-foreground focus-visible:underline focus-visible:underline-offset-4"
+  "inline-flex min-h-11 items-center text-sm text-muted-foreground outline-none transition-colors duration-200 hover:text-foreground focus-visible:text-foreground focus-visible:underline focus-visible:underline-offset-4"
 
 export function SiteFooter() {
   return (
@@ -62,10 +63,13 @@ export function SiteFooter() {
               Inquiries
             </p>
             <a
-              className={`${linkClassName} mt-5 inline-block break-all sm:break-normal`}
-              href="mailto:hello@velorah.com"
+              className={`${linkClassName} mt-5 max-w-full break-all sm:break-normal`}
+              href={PROJECT_BRIEF_URL}
+              rel="noreferrer"
+              target="_blank"
             >
-              hello@velorah.com
+              Open a project brief
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <p className="mt-4 max-w-xs text-sm leading-6 text-muted-foreground">
               Working worldwide, one focused collaboration at a time.

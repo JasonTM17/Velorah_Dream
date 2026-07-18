@@ -199,7 +199,8 @@
   .section-reveal[data-visible="true"] .cinematic-image__asset,
   .cinematic-image:hover .cinematic-image__asset,
   .journal-toggle,
-  .journal-note[open] .journal-toggle {
+  .journal-note[open] .journal-toggle,
+  .contact-arrow {
     transform: none;
     transition: none;
   }

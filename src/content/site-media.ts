@@ -40,6 +40,6 @@ export const filmStills = {
   ),
   horizon: createFilmStill(
     "05",
-    "A lone creator framed by books and warm flowers beneath an expansive starry sky.",
+    "Three creators framed by books and warm flowers beneath an expansive starry sky.",
   ),
 } as const

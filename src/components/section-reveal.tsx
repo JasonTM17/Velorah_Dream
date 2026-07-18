@@ -36,14 +36,36 @@ export function SectionReveal({
       return
     }
 
+    const revealElement = element
+    let hasRevealed = false
+
+    function revealIfPastViewport() {
+      if (
+        revealElement.getBoundingClientRect().top <
+        window.innerHeight * 1.1
+      ) {
+        reveal()
+      }
+    }
+
+    function reveal() {
+      if (hasRevealed) {
+        return
+      }
+
+      hasRevealed = true
+      revealElement.dataset.visible = "true"
+      observer.unobserve(revealElement)
+      window.removeEventListener("scroll", revealIfPastViewport)
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting) {
           return
         }
 
-        element.dataset.visible = "true"
-        observer.unobserve(element)
+        reveal()
       },
       {
         rootMargin: "0px 0px -10% 0px",
@@ -51,9 +73,13 @@ export function SectionReveal({
       },
     )
 
-    observer.observe(element)
+    observer.observe(revealElement)
+    window.addEventListener("scroll", revealIfPastViewport, { passive: true })
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      window.removeEventListener("scroll", revealIfPastViewport)
+    }
   }, [])
 
   return (

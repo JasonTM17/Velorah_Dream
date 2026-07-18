@@ -41,7 +41,7 @@ export function AboutSection() {
     <section
       id="about"
       aria-labelledby="about-heading"
-      className="scroll-mt-20 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
+      className="scroll-mt-24 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <SectionReveal>
@@ -92,10 +92,17 @@ export function AboutSection() {
                   key={title}
                   className="grid gap-3 border-b border-white/10 py-6 sm:grid-cols-[2.5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] sm:gap-6"
                 >
-                  <span className="text-xs text-muted-foreground">
-                    0{index + 1}
-                  </span>
-                  <dt className="text-sm font-medium text-foreground">{title}</dt>
+                  <dt className="contents">
+                    <span
+                      aria-hidden="true"
+                      className="text-xs text-muted-foreground"
+                    >
+                      0{index + 1}
+                    </span>
+                    <span className="text-sm font-medium text-foreground">
+                      {title}
+                    </span>
+                  </dt>
                   <dd className="text-sm leading-6 text-muted-foreground">
                     {description}
                   </dd>

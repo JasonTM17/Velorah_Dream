@@ -141,20 +141,30 @@ describe("Velorah page", () => {
 
     expect(screen.getAllByText("Read the note")).toHaveLength(3)
     expect(document.querySelectorAll("details.journal-note")).toHaveLength(3)
+    expect(
+      screen.getAllByText("Read the note")[0]?.closest("summary"),
+    ).toHaveAttribute(
+      "aria-label",
+      "Read note: The discipline of leaving space",
+    )
   })
 
-  it("provides working email actions in contact and footer", () => {
+  it("provides working project brief actions in contact and footer", () => {
     render(<App />)
 
-    expect(
-      screen.getByRole("link", { name: "Start a conversation" }),
-    ).toHaveAttribute(
-      "href",
-      "mailto:hello@velorah.com?subject=New%20project%20with%20Velorah",
-    )
-    expect(
-      screen.getByRole("link", { name: "hello@velorah.com" }),
-    ).toHaveAttribute("href", "mailto:hello@velorah.com")
+    const briefLinks = screen.getAllByRole("link", {
+      name: /project brief/i,
+    })
+
+    expect(briefLinks).toHaveLength(2)
+    for (const link of briefLinks) {
+      expect(link).toHaveAttribute(
+        "href",
+        "https://github.com/JasonTM17/Velorah_Dream/issues/new?title=Project%20inquiry%3A%20",
+      )
+      expect(link).toHaveAttribute("target", "_blank")
+      expect(link).toHaveAttribute("rel", "noreferrer")
+    }
   })
 
   it("provides a focusable main target for keyboard users", () => {

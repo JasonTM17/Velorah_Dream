@@ -78,4 +78,45 @@ describe("SectionReveal", () => {
     unmount()
     expect(disconnect).toHaveBeenCalledOnce()
   })
+
+  it("reveals content skipped by a fast scroll", () => {
+    const observe = vi.fn()
+    const unobserve = vi.fn()
+    const disconnect = vi.fn()
+
+    class FakeIntersectionObserver {
+      constructor() {}
+
+      observe = observe
+      unobserve = unobserve
+      disconnect = disconnect
+    }
+
+    vi.stubGlobal("IntersectionObserver", FakeIntersectionObserver)
+
+    const { container, unmount } = render(
+      <SectionReveal>Fast content</SectionReveal>,
+    )
+    const element = container.firstElementChild as HTMLElement
+
+    vi.spyOn(element, "getBoundingClientRect").mockReturnValue({
+      top: -400,
+      bottom: -200,
+      left: 0,
+      right: 0,
+      width: 0,
+      height: 0,
+      x: 0,
+      y: -400,
+      toJSON: () => ({}),
+    } as DOMRect)
+
+    act(() => window.dispatchEvent(new Event("scroll")))
+
+    expect(element).toHaveAttribute("data-visible", "true")
+    expect(unobserve).toHaveBeenCalledWith(element)
+
+    unmount()
+    expect(disconnect).toHaveBeenCalledOnce()
+  })
 })

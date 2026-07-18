@@ -1,8 +1,7 @@
 import { CinematicImage } from "@/components/cinematic-image"
 import { SectionReveal } from "@/components/section-reveal"
+import { PROJECT_BRIEF_URL } from "@/content/site-contact"
 import { filmStills } from "@/content/site-media"
-
-const CONTACT_EMAIL = "hello@velorah.com"
 
 const firstNotePrompts = [
   "What are you making, changing, or trying to understand?",
@@ -22,7 +21,7 @@ export function ContactSection() {
     <section
       id="reach-us"
       aria-labelledby="reach-us-heading"
-      className="scroll-mt-20 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
+      className="scroll-mt-24 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <SectionReveal className="grid gap-10 md:grid-cols-[minmax(0,0.7fr)_minmax(0,2fr)] md:gap-12">
@@ -45,14 +44,18 @@ export function ContactSection() {
             </p>
 
             <a
-              aria-label="Start a conversation"
               className="group mt-12 inline-flex min-h-12 max-w-full items-center gap-4 border-b border-white/35 pb-2 font-display text-3xl leading-none text-foreground outline-none transition-colors duration-300 hover:border-white focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background sm:text-4xl"
-              href={`mailto:${CONTACT_EMAIL}?subject=New%20project%20with%20Velorah`}
+              href={PROJECT_BRIEF_URL}
+              rel="noreferrer"
+              target="_blank"
             >
-              <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
+              <span>
+                Start a project brief
+                <span className="sr-only"> (opens in a new tab)</span>
+              </span>
               <span
                 aria-hidden="true"
-                className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                className="contact-arrow text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               >
                 ↗
               </span>
@@ -98,11 +101,16 @@ export function ContactSection() {
                     key={title}
                     className="grid gap-3 border-b border-white/10 py-5 sm:grid-cols-[2.5rem_6rem_minmax(0,1fr)] sm:gap-5"
                   >
-                    <span className="text-xs text-muted-foreground">
-                      0{index + 1}
-                    </span>
-                    <dt className="text-sm font-medium text-foreground">
-                      {title}
+                    <dt className="contents">
+                      <span
+                        aria-hidden="true"
+                        className="text-xs text-muted-foreground"
+                      >
+                        0{index + 1}
+                      </span>
+                      <span className="text-sm font-medium text-foreground">
+                        {title}
+                      </span>
                     </dt>
                     <dd className="text-sm leading-6 text-muted-foreground">
                       {description}

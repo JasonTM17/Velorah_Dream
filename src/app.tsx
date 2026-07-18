@@ -7,8 +7,11 @@ import { StudioSection } from "@/components/sections/studio-section"
 import { Button } from "@/components/ui/button"
 import { ViewportVideo } from "@/components/viewport-video"
 import { filmStills } from "@/content/site-media"
+import { useInitialHashAnchor } from "@/hooks/use-initial-hash-anchor"
 
 export function App() {
+  useInitialHashAnchor()
+
   return (
     <div className="min-h-screen overflow-x-clip bg-background text-foreground">
       <a

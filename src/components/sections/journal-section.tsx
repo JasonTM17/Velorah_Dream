@@ -60,7 +60,7 @@ export function JournalSection() {
     <section
       id="journal"
       aria-labelledby="journal-heading"
-      className="scroll-mt-20 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
+      className="scroll-mt-24 border-t border-white/10 px-6 py-24 sm:px-8 sm:py-32 lg:py-40"
     >
       <div className="mx-auto max-w-7xl">
         <SectionReveal>
@@ -118,7 +118,10 @@ export function JournalSection() {
                     </p>
 
                     <details className="journal-note mt-8 border-t border-white/15">
-                      <summary className="flex min-h-12 cursor-pointer items-center justify-between gap-6 py-4 text-sm text-foreground outline-none transition-colors duration-200 hover:text-white/75 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+                      <summary
+                        aria-label={`Read note: ${entry.title}`}
+                        className="flex min-h-12 cursor-pointer items-center justify-between gap-6 py-4 text-sm text-foreground outline-none transition-colors duration-200 hover:text-white/75 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+                      >
                         <span>Read the note</span>
                         <span
                           aria-hidden="true"
