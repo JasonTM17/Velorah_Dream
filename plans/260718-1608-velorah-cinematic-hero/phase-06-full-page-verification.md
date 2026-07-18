@@ -1,7 +1,7 @@
 ---
 phase: 6
 title: Full Page Verification
-status: in-progress
+status: completed
 effort: 1h
 ---
 
@@ -21,7 +21,7 @@ Verify the expanded page at code, browser, accessibility, and documentation leve
 
 ## Success Criteria
 
-- [ ] Lint, component tests, coverage thresholds, audit, and production build pass.
-- [ ] Chromium QA passes at 1440, 768, 375 portrait, and 812 landscape widths.
-- [ ] No console errors, broken anchors, horizontal overflow, or hidden reduced-motion content.
-- [ ] README, design, architecture, roadmap, codebase summary, and plan status match reality.
+- [x] Lint, component tests, coverage thresholds, audit, and production build pass.
+- [x] Chromium QA passes at 1440, 768, 375 portrait, and 812 landscape widths.
+- [x] No console errors, broken anchors, horizontal overflow, or hidden reduced-motion content.
+- [x] README, design, architecture, roadmap, codebase summary, and plan status match reality.

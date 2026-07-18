@@ -1,7 +1,7 @@
 ---
-title: Velorah Cinematic Hero
+title: Velorah Cinematic Experience
 description: Build and verify a production-ready cinematic single-page site for Velorah.
-status: in-progress
+status: completed
 priority: P1
 effort: 6h
 branch: main
@@ -23,9 +23,9 @@ Create a complete React, Vite, Tailwind CSS, TypeScript, and shadcn/ui single-pa
 
 ## Progress
 
-- Phases: 3/6 completed (50%).
+- Phases: 6/6 completed (100%).
 - Hero success criteria: 11/11 verified.
-- Full-page criteria: pending phases 4-6.
+- Full-page criteria: all verified.
 
 ## Phases
 
@@ -36,7 +36,7 @@ Create a complete React, Vite, Tailwind CSS, TypeScript, and shadcn/ui single-pa
 | 3 | [Verification and Documentation](./phase-03-verification-and-documentation.md) | Completed |
 | 4 | [Studio About and Motion](./phase-04-studio-about-and-motion.md) | Completed |
 | 5 | [Journal Contact and Footer](./phase-05-journal-contact-and-footer.md) | Completed |
-| 6 | [Full Page Verification](./phase-06-full-page-verification.md) | In Progress |
+| 6 | [Full Page Verification](./phase-06-full-page-verification.md) | Completed |
 
 ## Dependencies
 
