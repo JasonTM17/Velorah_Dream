@@ -1,5 +1,8 @@
 import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 import { AboutSection } from "@/components/sections/about-section"
+import { ContactSection } from "@/components/sections/contact-section"
+import { JournalSection } from "@/components/sections/journal-section"
 import { StudioSection } from "@/components/sections/studio-section"
 import { Button } from "@/components/ui/button"
 
@@ -68,7 +71,11 @@ export function App() {
 
         <StudioSection />
         <AboutSection />
+        <JournalSection />
+        <ContactSection />
       </main>
+
+      <SiteFooter />
     </div>
   )
 }
