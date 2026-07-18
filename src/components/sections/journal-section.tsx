@@ -49,7 +49,7 @@ export function JournalSection() {
           {journalEntries.map(
             ({ date, displayDate, category, title, excerpt }, index) => (
               <SectionReveal key={title}>
-                <article className="group grid gap-5 border-b border-white/10 py-9 sm:grid-cols-[8rem_minmax(0,0.85fr)_minmax(16rem,1.35fr)] sm:gap-8 sm:py-11">
+                <article className="grid gap-5 border-b border-white/10 py-9 sm:grid-cols-[8rem_minmax(0,0.85fr)_minmax(16rem,1.35fr)] sm:gap-8 sm:py-11">
                   <div className="flex gap-4 text-xs text-muted-foreground sm:block">
                     <span className="mr-4 text-foreground/60">0{index + 1}</span>
                     <time dateTime={date}>{displayDate}</time>
@@ -58,7 +58,7 @@ export function JournalSection() {
                     <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                       {category}
                     </p>
-                    <h3 className="mt-4 font-display text-3xl leading-[1.05] tracking-[-0.025em] text-foreground transition-transform duration-300 group-hover:translate-x-1 sm:text-4xl">
+                    <h3 className="mt-4 font-display text-3xl leading-[1.05] tracking-[-0.025em] text-foreground sm:text-4xl">
                       {title}
                     </h3>
                   </div>
