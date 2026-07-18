@@ -21,7 +21,7 @@ export function App() {
       </video>
 
       <a
-        className="sr-only z-20 rounded-full bg-background px-4 py-3 text-foreground focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+        className="sr-only z-20 rounded-full bg-background text-foreground focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:px-4 focus:py-3"
         href="#main-content"
       >
         Skip to main content
