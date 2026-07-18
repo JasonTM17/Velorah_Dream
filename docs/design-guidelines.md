@@ -34,6 +34,7 @@ Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.4
 - Current desktop/mobile anchor uses foreground color and `aria-current="location"`.
 - Mobile links are at least 44px tall; opening focuses Home; Escape closes and returns focus; selection and desktop resize close.
 - Footer navigation remains visible at every width as a second route to all sections.
+- Anchored sections use 96px scroll clearance; direct fragments align after mount.
 - Studio, principles, and Journal use ruled rows rather than interchangeable cards.
 - The Studio reel is a wide asymmetric figure with its caption outside the media; no overlay copy or card shell.
 
@@ -45,17 +46,19 @@ Use the shared `glass` Button variant. It combines 1% white fill, 4px backdrop b
 
 - Headline enters at `0s`, copy at `0.2s`, CTA at `0.4s`; duration is `0.8s ease-out` with 24px travel.
 - Below-hero content reveals once with 32px vertical travel.
+- Film stills settle from `1.035` scale and use restrained `1.018` pointer hover.
 - Mobile disclosure uses a 0.2s transform/opacity entrance and a transform-only icon morph.
 - Hover scales glass controls to `1.03`; active state scales to `0.98`.
 - Hero and reel share the supplied silent looping MP4. Hero uses `preload="auto"`; reel uses `preload="metadata"`.
 - Video attempts playback at 25% visibility, pauses outside view, and contains autoplay rejection.
-- Reduced-motion mode removes CSS entrance/reveal/disclosure animation and smooth scrolling. It does not stop video.
+- Reduced-motion mode removes CSS entrance/reveal/disclosure/hover animation and smooth scrolling. It does not stop video.
 
 ## Identity
 
 - `public/velorah-mark.svg` is the local tab icon.
-- `public/velorah-social-card.svg` is the root-relative Open Graph/Twitter image.
-- Keep share metadata domain-neutral until deployment supplies a production origin. Do not claim universal SVG crawler support.
+- `public/velorah-social-card.svg` is the editable share source.
+- `public/velorah-social-card.png` is the 1200x630 Open Graph/Twitter asset.
+- Canonical and share URLs use `https://velorah-dream.vercel.app/`.
 
 ## Prohibited treatments
 
