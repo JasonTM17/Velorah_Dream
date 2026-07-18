@@ -69,6 +69,15 @@ describe("Velorah hero", () => {
     }
   })
 
+  it("provides a focusable main target for keyboard users", () => {
+    render(<App />)
+
+    expect(
+      screen.getByRole("link", { name: "Skip to main content" }),
+    ).toHaveAttribute("href", "#main-content")
+    expect(screen.getByRole("main")).toHaveAttribute("tabindex", "-1")
+  })
+
   it("keeps the default shadcn button available for native actions", () => {
     render(<Button type="button">Continue</Button>)
 
