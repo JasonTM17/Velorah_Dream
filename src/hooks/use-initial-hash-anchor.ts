@@ -18,19 +18,21 @@ function getHashTarget() {
 
 export function useInitialHashAnchor() {
   useEffect(() => {
-    const target = getHashTarget()
-
-    if (!target) {
-      return
-    }
-
     let alignmentFrame: number | undefined
-    let isTrackingLayout = true
+    let currentTarget: HTMLElement | null = null
+    let isTrackingLayout = false
     let layoutObserver: ResizeObserver | undefined
+    let trackingTimeout: number | undefined
 
     const stopTrackingLayout = () => {
       isTrackingLayout = false
       layoutObserver?.disconnect()
+      layoutObserver = undefined
+
+      if (trackingTimeout !== undefined) {
+        window.clearTimeout(trackingTimeout)
+        trackingTimeout = undefined
+      }
 
       if (alignmentFrame !== undefined) {
         window.cancelAnimationFrame(alignmentFrame)
@@ -39,7 +41,7 @@ export function useInitialHashAnchor() {
     }
 
     const alignTarget = () => {
-      if (!isTrackingLayout) {
+      if (!isTrackingLayout || !currentTarget) {
         return
       }
 
@@ -54,24 +56,48 @@ export function useInitialHashAnchor() {
           return
         }
 
+        const target = currentTarget
+
+        if (!target) {
+          return
+        }
+
         const root = document.documentElement
         const previousScrollBehavior = root.style.scrollBehavior
 
         root.style.scrollBehavior = "auto"
         target.scrollIntoView({ block: "start" })
         root.style.scrollBehavior = previousScrollBehavior
+        window.dispatchEvent(new Event("scroll"))
       })
     }
 
-    alignTarget()
+    const startTrackingCurrentHash = () => {
+      stopTrackingLayout()
+      currentTarget = getHashTarget()
 
-    if ("ResizeObserver" in window) {
-      layoutObserver = new ResizeObserver(alignTarget)
-      layoutObserver.observe(document.body)
+      if (!currentTarget) {
+        return
+      }
+
+      isTrackingLayout = true
+      alignTarget()
+
+      if ("ResizeObserver" in window) {
+        layoutObserver = new ResizeObserver(alignTarget)
+        layoutObserver.observe(document.body)
+      }
+
+      trackingTimeout = window.setTimeout(
+        stopTrackingLayout,
+        HASH_ALIGNMENT_WINDOW_MS,
+      )
     }
 
+    startTrackingCurrentHash()
+
     window.addEventListener("load", alignTarget)
-    window.addEventListener("hashchange", stopTrackingLayout)
+    window.addEventListener("hashchange", startTrackingCurrentHash)
     window.addEventListener("pointerdown", stopTrackingLayout, {
       passive: true,
     })
@@ -85,16 +111,10 @@ export function useInitialHashAnchor() {
       void document.fonts.ready.then(alignTarget)
     }
 
-    const trackingTimeout = window.setTimeout(
-      stopTrackingLayout,
-      HASH_ALIGNMENT_WINDOW_MS,
-    )
-
     return () => {
       stopTrackingLayout()
-      window.clearTimeout(trackingTimeout)
       window.removeEventListener("load", alignTarget)
-      window.removeEventListener("hashchange", stopTrackingLayout)
+      window.removeEventListener("hashchange", startTrackingCurrentHash)
       window.removeEventListener("pointerdown", stopTrackingLayout)
       window.removeEventListener("wheel", stopTrackingLayout)
       window.removeEventListener("touchstart", stopTrackingLayout)

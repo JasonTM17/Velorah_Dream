@@ -98,11 +98,36 @@ describe("useInitialHashAnchor", () => {
     vi.stubGlobal("cancelAnimationFrame", cancelAnimationFrame)
 
     renderHook(() => useInitialHashAnchor())
+    window.history.replaceState(null, "", "/#journal")
     window.dispatchEvent(new HashChangeEvent("hashchange"))
     queuedAlignment?.(1)
 
     expect(cancelAnimationFrame).toHaveBeenCalledWith(42)
     expect(scrollIntoView).not.toHaveBeenCalled()
+  })
+
+  it("tracks a new hash target while its layout settles", () => {
+    const target = document.createElement("section")
+    const scrollIntoView = vi.fn()
+
+    target.id = "journal"
+    target.scrollIntoView = scrollIntoView
+    document.body.append(target)
+
+    vi.stubGlobal(
+      "requestAnimationFrame",
+      (callback: FrameRequestCallback) => {
+        callback(1)
+        return 1
+      },
+    )
+    vi.stubGlobal("cancelAnimationFrame", vi.fn())
+
+    renderHook(() => useInitialHashAnchor())
+    window.history.replaceState(null, "", "/#journal")
+    window.dispatchEvent(new HashChangeEvent("hashchange"))
+
+    expect(scrollIntoView).toHaveBeenCalledWith({ block: "start" })
   })
 
   it("does nothing when no hash target exists", () => {
