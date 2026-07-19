@@ -98,16 +98,15 @@ describe("Velorah page", () => {
     expect(
       screen.getByRole("region", { name: "We shape clarity into digital form." }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByRole("region", {
-        name: "Built for minds that refuse the obvious.",
-      }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole("region", {
-        name: "Notes from the edge of attention.",
-      }),
-    ).toBeInTheDocument()
+    const aboutSection = screen.getByRole("region", {
+      name: "Built for minds that refuse the obvious.",
+    })
+    const journalSection = screen.getByRole("region", {
+      name: "Notes from the edge of attention.",
+    })
+
+    expect(aboutSection).toBeInTheDocument()
+    expect(journalSection).toBeInTheDocument()
     expect(
       screen.getByRole("region", {
         name: "Bring us the question that won't leave you alone.",
@@ -115,6 +114,25 @@ describe("Velorah page", () => {
     ).toBeInTheDocument()
 
     expect(document.querySelectorAll("#journal article")).toHaveLength(3)
+
+    const workingModel = within(aboutSection).getByRole("heading", {
+      level: 3,
+      name: "Working model",
+    })
+    expect(workingModel.closest("section")?.querySelector("dl")).not.toBeNull()
+    expect(within(aboutSection).getByText("Direct collaboration")).toBeInTheDocument()
+    expect(within(aboutSection).getByText("One connected practice")).toBeInTheDocument()
+    expect(within(aboutSection).getByText("Built to continue")).toBeInTheDocument()
+
+    const method = within(aboutSection).getByRole("list", {
+      name: "How we work",
+    })
+    expect(method.tagName).toBe("OL")
+    expect(within(method).getAllByRole("listitem")).toHaveLength(4)
+
+    const featuredBody = within(journalSection).getByText(/^Space is active\./)
+    expect(featuredBody).toBeInTheDocument()
+    expect(featuredBody.closest("details")).toBeNull()
 
     const footerNavigation = screen.getByRole("navigation", {
       name: "Footer navigation",
@@ -125,7 +143,7 @@ describe("Velorah page", () => {
     )
   })
 
-  it("renders dimensioned, responsive film imagery and expandable journal notes", () => {
+  it("renders dimensioned imagery and named native journal disclosures", () => {
     render(<App />)
 
     const filmImages = screen.getAllByRole("img")
@@ -139,14 +157,25 @@ describe("Velorah page", () => {
       expect(image.getAttribute("srcset")).toContain("1440.webp 1440w")
     }
 
-    expect(screen.getAllByText("Read the note")).toHaveLength(3)
-    expect(document.querySelectorAll("details.journal-note")).toHaveLength(3)
-    expect(
-      screen.getAllByText("Read the note")[0]?.closest("summary"),
-    ).toHaveAttribute(
-      "aria-label",
-      "Read note: The discipline of leaving space",
+    const journalSection = screen.getByRole("region", {
+      name: "Notes from the edge of attention.",
+    })
+    const disclosures = Array.from(
+      journalSection.querySelectorAll("details.journal-note > summary"),
     )
+
+    expect(document.querySelectorAll("details.journal-note")).toHaveLength(2)
+    expect(disclosures).toHaveLength(2)
+    expect(disclosures[0]).toHaveTextContent(
+      "Read note: Designing for a quieter kind of focus",
+    )
+    expect(disclosures[1]).toHaveTextContent(
+      "Read note: When a system begins to feel alive",
+    )
+    for (const summary of disclosures) {
+      expect(summary.tagName).toBe("SUMMARY")
+      expect(summary).not.toHaveAttribute("aria-label")
+    }
   })
 
   it("provides working project brief actions in contact and footer", () => {

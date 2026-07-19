@@ -1,61 +1,36 @@
 import { CinematicImage } from "@/components/cinematic-image"
 import { SectionHeading } from "@/components/section-heading"
 import { SectionReveal } from "@/components/section-reveal"
-import { filmStills, type FilmStill } from "@/content/site-media"
+import {
+  currentThread,
+  journalEntries,
+  journalQuestions,
+  type JournalEntry,
+} from "@/content/journal-content"
 
-interface JournalEntry {
-  body: readonly string[]
-  category: string
-  date: string
-  displayDate: string
-  excerpt: string
-  still: FilmStill
-  title: string
+const journalDateFormatter = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+})
+
+function JournalMeta({ entry, number }: { entry: JournalEntry; number: string }) {
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+      <span className="text-foreground/60">{number}</span>
+      <time dateTime={entry.date}>
+        {journalDateFormatter.format(new Date(`${entry.date}T00:00:00Z`))}
+      </time>
+      <span aria-hidden="true">/</span>
+      <span className="uppercase tracking-[0.18em]">{entry.category}</span>
+    </div>
+  )
 }
 
-const journalEntries: readonly JournalEntry[] = [
-  {
-    date: "2026-06-24",
-    displayDate: "24 Jun 2026",
-    category: "Field note",
-    title: "The discipline of leaving space",
-    excerpt:
-      "Why restraint is not an aesthetic shortcut, but a way to help the right idea become unmistakable.",
-    body: [
-      "Space is active. It separates signal from decoration, gives a sentence somewhere to land, and lets an image carry more than one meaning.",
-      "The difficult part is knowing what to remove. We return to one question: if this element disappeared, would the experience become less clear, less useful, or less felt? If not, the work usually grows stronger without it.",
-    ],
-    still: filmStills.focus,
-  },
-  {
-    date: "2026-05-08",
-    displayDate: "08 May 2026",
-    category: "Process",
-    title: "Designing for a quieter kind of focus",
-    excerpt:
-      "A practical study of pace, hierarchy, and the small decisions that let attention settle instead of scatter.",
-    body: [
-      "Focus is rarely created by making everything softer. It comes from contrast: one strong action against a calm field, one clear rhythm across many kinds of content, one moment of motion when it has something to say.",
-      "We prototype that rhythm early. Long before polish, we watch how a page breathes, where the eye pauses, and whether the next step feels chosen rather than demanded.",
-    ],
-    still: filmStills.gathering,
-  },
-  {
-    date: "2026-03-17",
-    displayDate: "17 Mar 2026",
-    category: "Perspective",
-    title: "When a system begins to feel alive",
-    excerpt:
-      "The shift from collecting components to building a language that can respond, evolve, and still feel whole.",
-    body: [
-      "A system becomes useful when its rules explain more than the examples that created them. The same relationships should hold when content changes, a screen shrinks, or a new idea enters the room.",
-      "That does not mean making every surface identical. It means giving variation a shared grammar — enough structure to feel related, enough freedom to remain human.",
-    ],
-    still: filmStills.signal,
-  },
-]
-
 export function JournalSection() {
+  const [featuredEntry, ...moreEntries] = journalEntries
+
   return (
     <section
       id="journal"
@@ -72,57 +47,103 @@ export function JournalSection() {
           />
         </SectionReveal>
 
-        <div className="mt-20 border-t border-white/15 sm:mt-28">
-          {journalEntries.map((entry, index) => {
-            const mediaClassName =
-              index % 2 === 0
-                ? "lg:col-span-7"
-                : "lg:order-2 lg:col-start-6 lg:col-span-7"
-            const contentClassName =
-              index % 2 === 0
-                ? "lg:col-start-9 lg:col-span-4"
-                : "lg:order-1 lg:col-span-4"
+        <SectionReveal className="mt-20 sm:mt-28">
+          <section
+            aria-labelledby="current-thread-heading"
+            className="grid gap-4 border-y border-white/15 py-6 sm:grid-cols-[8rem_minmax(0,0.9fr)_minmax(16rem,1.1fr)] sm:items-baseline sm:gap-8"
+          >
+            <h3
+              id="current-thread-heading"
+              className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground"
+            >
+              Current thread
+            </h3>
+            <p className="font-display text-2xl leading-none tracking-[-0.02em] sm:text-3xl">
+              {currentThread.title}
+            </p>
+            <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+              {currentThread.description}
+            </p>
+          </section>
 
-            return (
-              <SectionReveal key={entry.title}>
-                <article className="grid gap-8 border-b border-white/10 py-12 lg:grid-cols-12 lg:items-center lg:gap-8 sm:py-16">
+          <article className="grid gap-10 border-b border-white/15 py-14 sm:py-20 lg:grid-cols-12 lg:items-start lg:gap-8">
+            <div className="lg:col-span-7">
+              <CinematicImage
+                frameClassName="aspect-[16/10]"
+                sizes="(min-width: 1024px) 58vw, 100vw"
+                still={featuredEntry.still}
+              />
+            </div>
+
+            <div className="lg:col-start-9 lg:col-span-4">
+              <JournalMeta entry={featuredEntry} number="01" />
+              <h3 className="mt-6 font-display text-5xl leading-[0.95] tracking-[-0.035em] text-balance sm:text-6xl">
+                {featuredEntry.title}
+              </h3>
+              <p className="mt-7 text-base leading-7 text-foreground/85 sm:text-lg sm:leading-8">
+                {featuredEntry.excerpt}
+              </p>
+              <div className="mt-8 space-y-5 border-t border-white/15 pt-7 text-sm leading-7 text-muted-foreground">
+                {featuredEntry.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </article>
+        </SectionReveal>
+
+        <SectionReveal className="mt-24 sm:mt-32">
+          <section aria-labelledby="more-notes-heading">
+            <div className="border-b border-white/15 pb-7">
+              <h3
+                id="more-notes-heading"
+                className="font-display text-4xl leading-none tracking-[-0.03em] sm:text-5xl"
+              >
+                More notes
+              </h3>
+            </div>
+
+            {moreEntries.map((entry, index) => {
+              const mediaClassName =
+                index === 0
+                  ? "lg:col-span-4"
+                  : "lg:col-start-2 lg:col-span-4"
+              const contentClassName =
+                index === 0
+                  ? "lg:col-start-6 lg:col-span-6"
+                  : "lg:col-start-7 lg:col-span-5"
+
+              return (
+                <article
+                  key={entry.title}
+                  className="grid gap-8 border-b border-white/10 py-10 sm:py-12 lg:grid-cols-12 lg:items-start lg:gap-8"
+                >
                   <div className={mediaClassName}>
                     <CinematicImage
-                      frameClassName={
-                        index === 0 ? "aspect-[16/10]" : "aspect-[4/3]"
-                      }
+                      frameClassName="aspect-[4/3]"
                       imageClassName={
-                        index === 1
-                          ? "object-[58%_center]"
-                          : "object-center"
+                        index === 0 ? "object-[58%_center]" : "object-center"
                       }
-                      sizes="(min-width: 1024px) 58vw, 100vw"
+                      sizes="(min-width: 1024px) 34vw, 100vw"
                       still={entry.still}
                     />
                   </div>
 
                   <div className={contentClassName}>
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-                      <span className="text-foreground/60">0{index + 1}</span>
-                      <time dateTime={entry.date}>{entry.displayDate}</time>
-                      <span aria-hidden="true">/</span>
-                      <span className="uppercase tracking-[0.18em]">
-                        {entry.category}
-                      </span>
-                    </div>
-                    <h3 className="mt-6 font-display text-4xl leading-[0.98] tracking-[-0.03em] text-balance sm:text-5xl">
+                    <JournalMeta entry={entry} number={`0${index + 2}`} />
+                    <h4 className="mt-5 font-display text-3xl leading-[0.98] tracking-[-0.025em] text-balance sm:text-4xl">
                       {entry.title}
-                    </h3>
-                    <p className="mt-6 text-sm leading-7 text-muted-foreground sm:text-base">
+                    </h4>
+                    <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
                       {entry.excerpt}
                     </p>
 
-                    <details className="journal-note mt-8 border-t border-white/15">
-                      <summary
-                        aria-label={`Read note: ${entry.title}`}
-                        className="flex min-h-12 cursor-pointer items-center justify-between gap-6 py-4 text-sm text-foreground outline-none transition-colors duration-200 hover:text-white/75 focus-visible:rounded-sm focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background"
-                      >
-                        <span>Read the note</span>
+                    <details className="journal-note mt-7 border-t border-white/15">
+                      <summary className="flex min-h-12 touch-manipulation cursor-pointer items-center justify-between gap-6 py-4 text-sm text-muted-foreground outline-none transition-colors duration-200 hover:text-foreground focus-visible:rounded-sm focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-background">
+                        <span>
+                          Read note
+                          <span className="sr-only">: {entry.title}</span>
+                        </span>
                         <span
                           aria-hidden="true"
                           className="journal-toggle text-xl font-light leading-none"
@@ -138,10 +159,39 @@ export function JournalSection() {
                     </details>
                   </div>
                 </article>
-              </SectionReveal>
-            )
-          })}
-        </div>
+              )
+            })}
+          </section>
+        </SectionReveal>
+
+        <SectionReveal className="mt-24 sm:mt-32">
+          <section aria-labelledby="journal-questions-heading">
+            <h3
+              id="journal-questions-heading"
+              className="max-w-3xl font-display text-4xl leading-[1] tracking-[-0.03em] sm:text-5xl"
+            >
+              Questions we keep returning to
+            </h3>
+            <ul className="mt-8 border-t border-white/15">
+              {journalQuestions.map((question, index) => (
+                <li
+                  key={question}
+                  className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-4 border-b border-white/10 py-6 sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-8"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="text-xs text-muted-foreground"
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className="max-w-3xl font-display text-2xl leading-tight tracking-[-0.015em] sm:text-3xl">
+                    {question}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </SectionReveal>
       </div>
     </section>
   )
