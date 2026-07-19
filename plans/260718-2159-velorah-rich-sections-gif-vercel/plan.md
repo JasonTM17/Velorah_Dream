@@ -4,7 +4,7 @@ description: >-
   Enrich every below-fold section with cinematic editorial depth, preserve the
   approved hero contract, capture motion GIF evidence, and release the verified
   site to Vercel.
-status: pending
+status: completed
 priority: P1
 branch: main
 tags:
@@ -40,9 +40,14 @@ overlay will be introduced.
 - Rich responsive Studio, About, Journal, Reach Us, and footer experiences.
 - Optimized local WebP frames derived from the approved Velorah film.
 - Motion behavior that uses transform/opacity and respects reduced motion.
-- Desktop hero, full-page, and mobile-navigation GIF evidence.
+- Four motion GIFs covering the exact hero, full site, mobile navigation, and
+  editorial sections.
 - Passing tests, coverage, lint, build, browser QA, review, and docs validation.
 - Verified Vercel production URL, deployment guide, focused commits, and GitHub push.
+- Content-rich About and Journal compositions that retain the approved cinematic
+  language while removing sparse editorial dead zones.
+- A repository-facing showcase with verified screenshots, all four motion GIFs,
+  accurate setup/architecture notes, and populated GitHub About metadata.
 
 ## Phases
 
@@ -51,7 +56,7 @@ overlay will be introduced.
 | 1 | [Rich Cinematic Section Design](./phase-01-rich-cinematic-section-design.md) | Completed |
 | 2 | [Motion and Media Implementation](./phase-02-motion-and-media-implementation.md) | Completed |
 | 3 | [GIF Evidence and Production QA](./phase-03-gif-evidence-and-production-qa.md) | Completed |
-| 4 | [Vercel Release and Documentation](./phase-04-vercel-release-and-documentation.md) | Pending |
+| 4 | [Vercel Release and Documentation](./phase-04-vercel-release-and-documentation.md) | Completed |
 
 ## Dependencies
 
@@ -69,6 +74,17 @@ overlay will be introduced.
 - No horizontal overflow at 320, 375, 768, 812 landscape, or 1440 pixels.
 - Hero copy, media source, token values, and entrance timings remain exact.
 - Reduced-motion mode removes authored reveal/hover motion without hiding content.
-- Three inspectable GIFs prove hero motion, full-page section motion, and mobile nav.
+- Four inspectable GIFs prove hero motion, full-page section motion, mobile nav,
+  and the expanded About/Journal editorial experience.
 - The final Vercel production URL loads without browser errors and matches the
   locally verified build.
+- GitHub's repository description, homepage, topics, and README accurately present
+  the live experience without invented clients, metrics, or unsupported claims.
+
+## Release Evidence
+
+- Production: <https://velorah-dream.vercel.app/>
+- Automated gates: [tester report](./reports/tester-2026-07-19-editorial-refresh.md)
+- Responsive production QA: [browser report](./reports/browser-qa-2026-07-19-editorial-refresh.md)
+- Vercel release: [deployment report](./reports/deployment-2026-07-19-vercel-production.md)
+- Production-readiness decision: [review report](./reports/code-reviewer-2026-07-19-editorial-refresh.md)

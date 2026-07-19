@@ -34,9 +34,18 @@ Hero type uses `text-5xl sm:text-7xl md:text-8xl`, `0.95` line-height, and `-2.4
 - Current desktop/mobile anchor uses foreground color and `aria-current="location"`.
 - Mobile links are at least 44px tall; opening focuses Home; Escape closes and returns focus; selection and desktop resize close.
 - Footer navigation remains visible at every width as a second route to all sections.
-- Anchored sections use 96px scroll clearance; direct fragments align after mount.
-- Studio, principles, and Journal use ruled rows rather than interchangeable cards.
+- Anchored sections use 96px scroll clearance. Direct fragments re-align while layout settles; user input cancels current correction, while a new hash starts a fresh alignment cycle. Active-section probing preserves the offset in short landscape viewports.
+- Studio, About, and Journal use ruled editorial relationships rather than interchangeable cards.
 - The Studio reel is a wide asymmetric figure with its caption outside the media; no overlay copy or card shell.
+- About places its manifesto opposite a portrait-oriented film still. The three-part Working model uses a compact ruled definition list; the four-step method uses a numbered ordered list with outcomes and a closing statement.
+- Journal opens with a bordered Current thread, gives the featured entry a dominant image/text composition, and places the two remaining notes in offset ruled rows. Three large question rows close the section.
+
+## Semantics and interaction
+
+- About uses a `dl` for the Working model and an `ol` for the four-step method; numbering does not replace semantic structure.
+- The featured Journal entry keeps all three body paragraphs visible. The two secondary notes use native `details`/`summary`, not fake article links or custom disclosure state.
+- Each Journal summary keeps the visible “Read note” label and adds its entry title as visually hidden text, producing a unique accessible name.
+- Journal summaries have keyboard focus treatment and at least a 48px (`min-h-12`) touch row.
 
 ## Glass controls
 
@@ -48,10 +57,11 @@ Use the shared `glass` Button variant. It combines 1% white fill, 4px backdrop b
 - Below-hero content reveals once with 32px vertical travel.
 - Film stills settle from `1.035` scale and use restrained `1.018` pointer hover.
 - Mobile disclosure uses a 0.2s transform/opacity entrance and a transform-only icon morph.
+- Journal note indicators rotate from `+` to `×` over 0.22s when their native disclosure opens.
 - Hover scales glass controls to `1.03`; active state scales to `0.98`.
 - Hero and reel share the supplied silent looping MP4. Hero uses `preload="auto"`; reel uses `preload="metadata"`.
 - Video attempts playback at 25% visibility, pauses outside view, and contains autoplay rejection.
-- Reduced-motion mode removes CSS entrance/reveal/disclosure/hover animation and smooth scrolling. It does not stop video.
+- Reduced-motion mode removes hero entrance, section reveal, mobile-menu, image, Journal-indicator, contact-arrow, and smooth-scroll motion, and reduces link/button transitions to `0.01ms`. It does not stop video or prevent native Journal disclosures from opening.
 
 ## Identity
 
