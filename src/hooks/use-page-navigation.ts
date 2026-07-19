@@ -7,6 +7,8 @@ import {
 
 const DEFAULT_SECTION: NavigationId = "home"
 const HERO_SURFACE_THRESHOLD = 0.55
+const SECTION_ANCHOR_OFFSET = 96
+const SECTION_PROBE_OFFSET = SECTION_ANCHOR_OFFSET + 1
 
 function isNavigationId(id: string): id is NavigationId {
   return navigationItems.some((item) => item.id === id)
@@ -44,7 +46,7 @@ export function usePageNavigation() {
         }
       },
       {
-        rootMargin: "-18% 0px -70% 0px",
+        rootMargin: `-${SECTION_ANCHOR_OFFSET}px 0px -65% 0px`,
         threshold: 0,
       },
     )
@@ -54,7 +56,10 @@ export function usePageNavigation() {
     let scrollFrame: number | undefined
     const updateActiveFromScroll = () => {
       scrollFrame = undefined
-      const probeLine = window.innerHeight * 0.18
+      const probeLine = Math.max(
+        SECTION_PROBE_OFFSET,
+        window.innerHeight * 0.18,
+      )
       let currentSection = sections[0]
 
       for (const section of sections) {

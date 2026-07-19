@@ -132,6 +132,60 @@ describe("SiteHeader", () => {
     ).toHaveAttribute("aria-current", "location")
   })
 
+  it("keeps a direct section active in a short landscape viewport", () => {
+    class FakeIntersectionObserver {
+      constructor() {}
+
+      observe = vi.fn()
+      disconnect = vi.fn()
+    }
+
+    vi.stubGlobal("IntersectionObserver", FakeIntersectionObserver)
+    vi.stubGlobal("innerHeight", 375)
+    vi.stubGlobal(
+      "requestAnimationFrame",
+      (callback: FrameRequestCallback) => {
+        callback(1)
+        return 1
+      },
+    )
+    vi.stubGlobal("cancelAnimationFrame", vi.fn())
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(
+      function (this: HTMLElement) {
+        const topBySection: Record<string, number> = {
+          home: -1600,
+          studio: -700,
+          about: 96,
+          journal: 1000,
+          "reach-us": 2000,
+        }
+        const top = topBySection[this.id] ?? 0
+
+        return {
+          top,
+          bottom: top + 800,
+          left: 0,
+          right: 0,
+          width: 800,
+          height: 800,
+          x: 0,
+          y: top,
+          toJSON: () => ({}),
+        } as DOMRect
+      },
+    )
+
+    renderHeaderWithSections()
+    act(() => window.dispatchEvent(new Event("scroll")))
+
+    const primaryNavigation = screen.getByRole("navigation", {
+      name: "Primary navigation",
+    })
+    expect(
+      within(primaryNavigation).getByRole("link", { name: "About" }),
+    ).toHaveAttribute("aria-current", "location")
+  })
+
   it("opens the mobile disclosure, manages focus, and closes on Escape", async () => {
     render(<SiteHeader />)
 

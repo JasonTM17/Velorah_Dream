@@ -198,11 +198,18 @@
   .cinematic-image__asset,
   .section-reveal[data-visible="true"] .cinematic-image__asset,
   .cinematic-image:hover .cinematic-image__asset,
-  .journal-toggle,
-  .journal-note[open] .journal-toggle,
   .contact-arrow {
     transform: none;
     transition: none;
+  }
+
+  .journal-note > summary,
+  .journal-toggle {
+    transition: none;
+  }
+
+  .journal-note[open] .journal-toggle {
+    transform: rotate(45deg);
   }
 
   a,
