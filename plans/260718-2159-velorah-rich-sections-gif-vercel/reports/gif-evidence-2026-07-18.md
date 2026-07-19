@@ -1,5 +1,8 @@
 # GIF Motion Evidence
 
+> Historical pre-refresh capture. The current four-artifact evidence set is in
+> [`gif-evidence-2026-07-19-editorial-refresh.md`](./gif-evidence-2026-07-19-editorial-refresh.md).
+
 ## Capture Method
 
 The browser recorder action was denied by the active automation policy. The safe
